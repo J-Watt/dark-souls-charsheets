@@ -1,0 +1,179 @@
+<div class="left-pane">
+    <h2>{{getTitle()}}</h2>
+    <hr>
+    <div class="container-left-nav">
+        <div class="left-nav-item" *ngFor="let nav of compendium.getCategories(); index as i"
+            [ngClass]="{'selectedNav' : selectedNav===nav}" (click)="onSelectNav(nav);">
+            <img src="/assets/images/icons/menu-icons/menu{{i}}.png">
+        </div>
+    </div>
+    <div class="inventory">
+        <h3 *ngIf="selectedItem && selectedItem.id >= 0; else noItem">{{selectedItem.name}}</h3>
+        <ng-template #noItem>
+            <h3>Select an Item</h3>
+        </ng-template>
+        <div class="inventory-container" *ngIf="compendium && character && selectedNav == 'status'">
+            <!-- WEAPONS -->
+            <ul>
+                <div class="status-item" *ngFor="let item of getEquipped('WEAPON')" (click)="onSelectItem(item)">
+                    <li class="inventory-item">
+                        <img src="{{item.icon}}">
+                        <img class="selected-item" src="/assets/images/menu/MENU_ItemParts_selection.png"
+                        *ngIf="selectedItem===item">
+                        <p class="item-name">{{item.name}}</p>
+                    <p class="item-quantity" *ngIf="getItemQuantity(item.itemType, item.id) > 1">{{getItemQuantity(item.itemType, item.id)}}</p>
+                    </li>
+                </div>
+                <div class="status-item status-item-weapon" (click)="onSelectNav('weapons')" *ngIf="(getEquipped('WEAPON').length % 5) <= 4 && (getEquipped('WEAPON').length % 5) != 0"></div>
+                <div class="status-item status-item-weapon" (click)="onSelectNav('weapons')" *ngIf="(getEquipped('WEAPON').length % 5) <= 3 && (getEquipped('WEAPON').length % 5) != 0"></div>
+                <div class="status-item status-item-weapon" (click)="onSelectNav('weapons')" *ngIf="(getEquipped('WEAPON').length % 5) <= 2 && (getEquipped('WEAPON').length % 5) != 0"></div>
+                <div class="status-item status-item-weapon" (click)="onSelectNav('weapons')" *ngIf="(getEquipped('WEAPON').length % 5) <= 1 && (getEquipped('WEAPON').length % 5) != 0"></div>
+            </ul>
+            <!-- ARMOR -->
+            <ul>
+                <div class="status-item" *ngFor="let item of getEquipped('ARMOR')" (click)="onSelectItem(item)">
+                    <li class="inventory-item">
+                        <img src="{{item.icon}}">
+                        <img class="selected-item" src="/assets/images/menu/MENU_ItemParts_selection.png"
+                        *ngIf="selectedItem===item">
+                        <p class="item-name">{{item.name}}</p>
+                    <p class="item-quantity" *ngIf="getItemQuantity(item.itemType, item.id) > 1">{{getItemQuantity(item.itemType, item.id)}}</p>
+                    </li>
+                </div>
+                <div class="status-item status-item-armor" (click)="onSelectNav('armors')" *ngIf="(getEquipped('ARMOR').length % 5) <= 4 && (getEquipped('ARMOR').length % 5) != 0"></div>
+                <div class="status-item status-item-armor" (click)="onSelectNav('armors')" *ngIf="(getEquipped('ARMOR').length % 5) <= 3 && (getEquipped('ARMOR').length % 5) != 0"></div>
+                <div class="status-item status-item-armor" (click)="onSelectNav('armors')" *ngIf="(getEquipped('ARMOR').length % 5) <= 2 && (getEquipped('ARMOR').length % 5) != 0"></div>
+                <div class="status-item status-item-armor" (click)="onSelectNav('armors')" *ngIf="(getEquipped('ARMOR').length % 5) <= 1 && (getEquipped('ARMOR').length % 5) != 0"></div>
+            </ul>
+            <!-- RINGS -->
+            <ul>
+                <div class="status-item" *ngFor="let item of getEquipped('RING')" (click)="onSelectItem(item)">
+                    <li class="inventory-item">
+                        <img src="{{item.icon}}">
+                        <img class="selected-item" src="/assets/images/menu/MENU_ItemParts_selection.png"
+                        *ngIf="selectedItem===item">
+                        <p class="item-name">{{item.name}}</p>
+                    <p class="item-quantity" *ngIf="getItemQuantity(item.itemType, item.id) > 1">{{getItemQuantity(item.itemType, item.id)}}</p>
+                    </li>
+                </div>
+                <div class="status-item status-item-ring" (click)="onSelectNav('rings')" *ngIf="(getEquipped('RING').length % 5) <= 4 && (getEquipped('RING').length % 5) != 0"></div>
+                <div class="status-item status-item-ring" (click)="onSelectNav('rings')" *ngIf="(getEquipped('RING').length % 5) <= 3 && (getEquipped('RING').length % 5) != 0"></div>
+                <div class="status-item status-item-ring" (click)="onSelectNav('rings')" *ngIf="(getEquipped('RING').length % 5) <= 2 && (getEquipped('RING').length % 5) != 0"></div>
+                <div class="status-item status-item-ring" (click)="onSelectNav('rings')" *ngIf="(getEquipped('RING').length % 5) <= 1 && (getEquipped('RING').length % 5) != 0"></div>
+            </ul>
+            <!-- TOOLS -->
+            <ul>
+                <div class="status-item" *ngFor="let item of getEquipped('TOOL')" (click)="onSelectItem(item)">
+                    <li class="inventory-item">
+                        <img src="{{item.icon}}">
+                        <img class="selected-item" src="/assets/images/menu/MENU_ItemParts_selection.png"
+                        *ngIf="selectedItem===item">
+                        <p class="item-name">{{item.name}}</p>
+                    <p class="item-quantity" *ngIf="getItemQuantity(item.itemType, item.id) > 1">{{getItemQuantity(item.itemType, item.id)}}</p>
+                    </li>
+                </div>
+                <div class="status-item" *ngFor="let item of getEquipped('JUNK')" (click)="onSelectItem(item)">
+                    <li class="inventory-item">
+                        <img src="{{item.icon}}">
+                        <img class="selected-item" src="/assets/images/menu/MENU_ItemParts_selection.png"
+                        *ngIf="selectedItem===item">
+                        <p class="item-name">{{item.name}}</p>
+                    <p class="item-quantity" *ngIf="getItemQuantity(item.itemType, item.id) > 1">{{getItemQuantity(item.itemType, item.id)}}</p>
+                    </li>
+                </div>
+                <div class="status-item status-item-tool" (click)="onSelectNav('tools')" *ngIf="((getEquipped('TOOL').length + getEquipped('JUNK').length) % 5) <= 4 && ((getEquipped('TOOL').length + getEquipped('JUNK').length) % 5) != 0"></div>
+                <div class="status-item status-item-tool" (click)="onSelectNav('tools')" *ngIf="((getEquipped('TOOL').length + getEquipped('JUNK').length) % 5) <= 3 && ((getEquipped('TOOL').length + getEquipped('JUNK').length) % 5) != 0"></div>
+                <div class="status-item status-item-tool" (click)="onSelectNav('tools')" *ngIf="((getEquipped('TOOL').length + getEquipped('JUNK').length) % 5) <= 2 && ((getEquipped('TOOL').length + getEquipped('JUNK').length) % 5) != 0"></div>
+                <div class="status-item status-item-tool" (click)="onSelectNav('tools')" *ngIf="((getEquipped('TOOL').length + getEquipped('JUNK').length) % 5) <= 1 && ((getEquipped('TOOL').length + getEquipped('JUNK').length) % 5) != 0"></div>
+            </ul>
+            <!-- SPELLS -->
+            <ul>
+                <div class="status-item" *ngFor="let item of getEquipped('SPELL')" (click)="onSelectItem(item)">
+                    <li class="inventory-item">
+                        <img src="{{item.icon}}">
+                        <img class="selected-item" src="/assets/images/menu/MENU_ItemParts_selection.png"
+                        *ngIf="selectedItem===item">
+                        <p class="item-name">{{item.name}}</p>
+                    <p class="item-quantity" *ngIf="getItemQuantity(item.itemType, item.id) > 1">{{getItemQuantity(item.itemType, item.id)}}</p>
+                    </li>
+                </div>
+                <div class="status-item status-item-spell" (click)="onSelectNav('spells')" *ngIf="(getEquipped('SPELL').length % 5) <= 4 && (getEquipped('SPELL').length % 5) != 0"></div>
+                <div class="status-item status-item-spell" (click)="onSelectNav('spells')" *ngIf="(getEquipped('SPELL').length % 5) <= 3 && (getEquipped('SPELL').length % 5) != 0"></div>
+                <div class="status-item status-item-spell" (click)="onSelectNav('spells')" *ngIf="(getEquipped('SPELL').length % 5) <= 2 && (getEquipped('SPELL').length % 5) != 0"></div>
+                <div class="status-item status-item-spell" (click)="onSelectNav('spells')" *ngIf="(getEquipped('SPELL').length % 5) <= 1 && (getEquipped('SPELL').length % 5) != 0"></div>
+            </ul>
+            <!-- ARTS -->
+            <ul>
+                <div class="status-item" *ngFor="let item of getEquipped('ART')" (click)="onSelectItem(item)">
+                    <li class="inventory-item">
+                        <img src="{{item.icon}}">
+                        <img class="selected-item" src="/assets/images/menu/MENU_ItemParts_selection.png"
+                        *ngIf="selectedItem===item">
+                        <p class="item-name">{{item.name}}</p>
+                    <p class="item-quantity" *ngIf="getItemQuantity(item.itemType, item.id) > 1">{{getItemQuantity(item.itemType, item.id)}}</p>
+                    </li>
+                </div>
+                <div class="status-item status-item-art" (click)="onSelectNav('arts')" *ngIf="(getEquipped('ART').length % 5) <= 4 && (getEquipped('ART').length % 5) != 0"></div>
+                <div class="status-item status-item-art" (click)="onSelectNav('arts')" *ngIf="(getEquipped('ART').length % 5) <= 3 && (getEquipped('ART').length % 5) != 0"></div>
+                <div class="status-item status-item-art" (click)="onSelectNav('arts')" *ngIf="(getEquipped('ART').length % 5) <= 2 && (getEquipped('ART').length % 5) != 0"></div>
+                <div class="status-item status-item-art" (click)="onSelectNav('arts')" *ngIf="(getEquipped('ART').length % 5) <= 1 && (getEquipped('ART').length % 5) != 0"></div>
+            </ul>
+            <!-- FEATS -->
+            <ul>
+                <div class="status-item" *ngFor="let item of getEquipped('FEAT')" (click)="onSelectItem(item)">
+                    <li class="inventory-item">
+                        <img src="{{item.icon}}">
+                        <img class="selected-item" src="/assets/images/menu/MENU_ItemParts_selection.png"
+                        *ngIf="selectedItem===item">
+                        <p class="item-name">{{item.name}}</p>
+                    <p class="item-quantity" *ngIf="getItemQuantity(item.itemType, item.id) > 1">{{getItemQuantity(item.itemType, item.id)}}</p>
+                    </li>
+                </div>
+                <div class="status-item status-item-feat" (click)="onSelectNav('feats')" *ngIf="(getEquipped('FEAT').length % 5) <= 4 && (getEquipped('FEAT').length % 5) != 0"></div>
+                <div class="status-item status-item-feat" (click)="onSelectNav('feats')" *ngIf="(getEquipped('FEAT').length % 5) <= 3 && (getEquipped('FEAT').length % 5) != 0"></div>
+                <div class="status-item status-item-feat" (click)="onSelectNav('feats')" *ngIf="(getEquipped('FEAT').length % 5) <= 2 && (getEquipped('FEAT').length % 5) != 0"></div>
+                <div class="status-item status-item-feat" (click)="onSelectNav('feats')" *ngIf="(getEquipped('FEAT').length % 5) <= 1 && (getEquipped('FEAT').length % 5) != 0"></div>
+            </ul>
+            <!-- DESTINY -->
+            <ul>
+                <div class="status-item" *ngFor="let item of getEquipped('DESTINY')" (click)="onSelectItem(item)">
+                    <li class="inventory-item">
+                        <img src="{{item.icon}}">
+                        <img class="selected-item" src="/assets/images/menu/MENU_ItemParts_selection.png"
+                        *ngIf="selectedItem===item">
+                        <p class="item-name">{{item.name}}</p>
+                    <p class="item-quantity" *ngIf="getItemQuantity(item.itemType, item.id) > 1">{{getItemQuantity(item.itemType, item.id)}}</p>
+                    </li>
+                </div>
+                <div class="status-item status-item-destiny" (click)="onSelectNav('destinys')" *ngIf="(getEquipped('DESTINY').length % 5) <= 4 && (getEquipped('DESTINY').length % 5) != 0"></div>
+                <div class="status-item status-item-destiny" (click)="onSelectNav('destinys')" *ngIf="(getEquipped('DESTINY').length % 5) <= 3 && (getEquipped('DESTINY').length % 5) != 0"></div>
+                <div class="status-item status-item-destiny" (click)="onSelectNav('destinys')" *ngIf="(getEquipped('DESTINY').length % 5) <= 2 && (getEquipped('DESTINY').length % 5) != 0"></div>
+                <div class="status-item status-item-destiny" (click)="onSelectNav('destinys')" *ngIf="(getEquipped('DESTINY').length % 5) <= 1 && (getEquipped('DESTINY').length % 5) != 0"></div>
+            </ul>
+        </div>
+        <div class="inventory-container" *ngIf="compendium && compendium.getCategory(selectedNav) && selectedNav != 'status'">
+            <ul>
+                <li class="inventory-item" *ngFor="let item of getInventory(selectedNav)" (click)="onSelectItem(item)">
+                    <img src="{{item.icon}}">
+                    <img class="selected-item" src="/assets/images/menu/MENU_ItemParts_selection.png"
+                        *ngIf="selectedItem===item">
+                    <p class="item-name">{{item.name}}</p>
+                    <p class="item-quantity" *ngIf="getItemQuantity(item.itemType, item.id) > 1">{{getItemQuantity(item.itemType, item.id)}}</p>
+                    <img class="item-equip-btn" src="/assets/images/menu/MENU_ItemParts_mark1.png" *ngIf="getItemQuantity(item.itemType, item.id) && isEquipped(item.itemType, item.id)">
+                </li>
+            </ul>
+            <hr>
+            <h6 *ngFor="let fil of getFilters(selectedNav)"
+                [ngClass]="{'selectedFilter' : selectedFilter===fil}"
+                (click)="onSelectFilter(fil)">{{fil}}</h6>
+            <ul>
+                <li class="inventory-item" *ngFor="let item of getCompendium(selectedNav)" (click)="onSelectItem(item)">
+                    <img src="{{item.icon}}">
+                    <img class="selected-item" src="/assets/images/menu/MENU_ItemParts_selection.png"
+                        *ngIf="selectedItem===item">
+                    <p class="item-name">{{item.name}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

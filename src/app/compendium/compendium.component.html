@@ -1,0 +1,16 @@
+<div class="container">
+    <div>
+      <app-left-pane (currentItem)="setCurrentItem($event)"
+                      [selectedItem]="selectedItem"
+                      [character]="character"></app-left-pane>
+    </div>
+    <div>
+      <app-center-pane [currentItem]="selectedItem"
+                        [character]="character"></app-center-pane>
+    </div>
+    <div>
+      <app-right-pane (currentItem)="setCurrentItem($event)"
+                      [selectedItem]="selectedItem"
+                      [character]="character"></app-right-pane>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+.header {
+    height: 80px;
+    width: auto;
+    padding: 20px 50px 5px 50px;
+    background-image: url("/assets/images/menu/MENU_Base_header.png");
+    background-size: 100% 105px;
+}
+
+h1 {
+    display: inline-block;
+    position: absolute;
+}
+
+img {
+    display: inline-block;
+    height: 100%;
+}

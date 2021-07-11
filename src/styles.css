@@ -1,1 +1,73 @@
-/* You can add global styles to this file, and also import other style files */
+/* Application-wide Styles */
+h1 {
+    color: #AB966F;
+    font-family: Imperial-BT, Arial, Helvetica, sans-serif;
+    font-size: 2em;
+    font-weight: normal;
+  }
+  h2 {
+    color: #AB966F;
+    font-family: Imperial-BT, Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+  }
+  h3 {
+    color: #bdbdbd;
+    font-family: Imperial-BT, Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+  }
+  h4 {
+    color: #AB966F;
+    font-family: Imperial-BT, Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+  }
+  h5 {
+    color: #bdbdbd;
+    font-family: Imperial-BT, Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 1.25em;
+  }
+  h6 {
+    color: #bdbdbd;
+    font-family: Imperial-BT, Arial, Helvetica, sans-serif;
+    font-weight: 100;
+    font-size: 0.75em;
+  }
+  p {
+    color: #bdbdbd;
+    font-family: Imperial-BT, Arial, Helvetica, sans-serif;
+  }
+  body {
+    margin: 0 2em 2em 2em;
+    min-width: 425px;
+  }
+  body, input[type="text"], button {
+    color: #333;
+    font-family: Cambria, Georgia, serif;
+    /*background-image: url("/assets/images/backgrounds/bg000.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;*/
+    /*background-position: 0% 100%;*/
+  }
+  html { 
+    background: url("/assets/images/backgrounds/bg000.jpg") no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  /* everywhere else */
+  * {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  @font-face {
+    font-family: "Imperial-BT";
+    src: local("Imperial-BT"), url(./assets/fonts/imperial_bt/imperialBT.ttf) format("truetype");
+  }
+    @font-face {
+    font-family: "Imperial-BT";
+    src: local("Imperial-BT"), url(./assets/fonts/imperial_bt/imperialBTBold.ttf) format("truetype");
+    font-weight: bold;
+  }
+
+  
