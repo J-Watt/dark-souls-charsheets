@@ -5,6 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators'
 
 import { MessageService } from './message.service';
 import { Character } from './character';
+import { Airtable, Base } from 'ngx-airtable';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,23 @@ export class CharacterService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  private _charactersTable;
+
   constructor(
     private http: HttpClient,
-    private messageService: MessageService) { }
+    private _airtable: Airtable,
+    private messageService: MessageService) {
+      const base: Base = this._airtable.base('app5TlItQ1d8XZrrU');
+      this._charactersTable = base.table({ tableName: 'Characters'});
+    }
+
+  airtableTest(): Observable<string> {
+    return this._charactersTable.select().all()
+    .pipe(
+      map(char => Object.assign(new Character(), JSON.parse(char[0].fields.data))),
+      catchError(this.handleError<string>())
+    );
+  }
 
   /** GET characters from the server */
   getCharacters(): Observable<Character[]> {
@@ -30,11 +45,16 @@ export class CharacterService {
 
   /** GET character by id. Will 404 if id not found */
   getCharacter(id: number): Observable<Character> {
-    const url = `${this.charactersUrl}/${id}`;
-    return this.http.get<Character>(url).pipe(
-      map(char => Object.assign(new Character(), char)),
-      tap(_ => this.log(`fetched character id=${id}`)),
-      catchError(this.handleError<Character>(`getCharacter id=${id}`))
+    // const url = `${this.charactersUrl}/${id}`;
+    // return this.http.get<Character>(url).pipe(
+    //   map(char => Object.assign(new Character(), char)),
+    //   tap(_ => this.log(`fetched character id=${id}`)),
+    //   catchError(this.handleError<Character>(`getCharacter id=${id}`))
+    // );
+    return this._charactersTable.select().all()
+    .pipe(
+      map(char => Object.assign(new Character(), JSON.parse(char[0].fields.data))),
+      catchError(this.handleError<Character>())
     );
   }
 

@@ -18,6 +18,7 @@ import { LeftPaneComponent } from './left-pane/left-pane.component';
 import { CenterPaneComponent } from './center-pane/center-pane.component';
 import { RightPaneComponent } from './right-pane/right-pane.component';
 import { CompendiumComponent } from './compendium/compendium.component';
+import { NgxAirtableModule } from 'ngx-airtable';
 
 @NgModule({
   declarations: [
@@ -38,13 +39,14 @@ import { CompendiumComponent } from './compendium/compendium.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxAirtableModule.forRoot({ apiKey: 'keyjNx12KH3lx4OQw' }),
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
     // Remove it when a real server is ready to receive requests.
-    HttpClientInMemoryWebApiModule.forRoot(
-      InMemoryDataService, { dataEncapsulation: false }
-      )
+    // HttpClientInMemoryWebApiModule.forRoot(
+    //   InMemoryDataService, { dataEncapsulation: false }
+    //   )
   ],
   providers: [],
   bootstrap: [AppComponent]
